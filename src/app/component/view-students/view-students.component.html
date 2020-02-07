@@ -1,0 +1,97 @@
+<app-nav-bar></app-nav-bar>
+<div class="col-md-12">
+    <br>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a style="color: #037aff">All Students</a>
+        </li>
+    </ol>
+    <br>
+    <p-table [responsive]="true" [value]="allStudents" [scrollable]="true" scrollHeight="400px" [responsive]="true"
+        [resizableColumns]="true">
+        <ng-template pTemplate="header">
+            <tr></tr>
+            <tr>
+                <th style="text-align: center">Student No</th>
+                <th style="text-align: center">Name</th>
+                <th style="text-align: center">Age</th>
+                <th style="text-align: center">Height</th>
+                <th style="text-align: center">Weight</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-allStudents>
+            <tr>
+                <td style="text-align: center">{{allStudents.student.id}}</td>
+                <td style="text-align: center">{{allStudents.student.name}}</td>
+                <td style="text-align: center">{{allStudents.student.age}}</td>
+                <td style="text-align: center">{{allStudents.student.height}}</td>
+                <td style="text-align: center">{{allStudents.student.height}}</td>
+
+                <button title="Edit Student" id="editbtn" name="viewButton" class="btn btn-success"
+                    (click)="edit_modal(allStudents)">
+                    <i class="fa fa-edit"></i>
+                </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<!--Edit Modal-->
+<p-dialog [header]="showDialogEditName" [(visible)]="isEditModelDisplay" [modal]="true" [responsive]="true"
+    [style]="{width: '650px', minWidth: '200px'}" [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+    <div class="col-md-12">
+        <br>
+        <div class="container std-profile">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content profile-tab" id="myEditTabContent">
+                        <div class="tab-pane fade show active" id="myhome" role="tabpanel" aria-labelledby="home-tab">
+
+                            <div class="form-group row">
+                                <label for="id" class="col-md-4 col-form-label">Student Id</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="id" class="form-control" placeholder="Enter Student Id"
+                                        name="id" [(ngModel)]="editedStudent.id" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label">Name</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="name" class="form-control" placeholder="Enter Student Name"
+                                        name="name" [(ngModel)]="editedStudent.name" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="age" class="col-md-4 col-form-label">Age</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="age" class="form-control" placeholder="Enter Age" name="age"
+                                        [(ngModel)]="editedStudent.age" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="height" class="col-md-4 col-form-label">Height</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="height" class="form-control" placeholder="Enter Height"
+                                        name="height" [(ngModel)]="editedEmployee.height" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Weight" class="col-md-4 col-form-label">Weight</label>
+                                <div class="col-md-8">
+                                    <input type="text" id="weight" class="form-control" placeholder="Enter Weight"
+                                        name="Weight" [(ngModel)]="editedEmployee.weight" required="required">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="edit_student(student)" label="Edit"></button>
+        <button type="button" pButton icon="pi pi-close" (click)="isEditModelDisplay=false" label="Close"
+            class="ui-button-secondary"></button>
+    </p-footer>
+</p-dialog>
